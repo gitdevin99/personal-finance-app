@@ -2,5 +2,5 @@ services:
   - type: static
     name: personal-finance-app
     env: static
-    buildCommand: ./build.sh
+    buildCommand: mkdir -p dist && cp -r index.html login dashboard signup onboarding assets dist/ && cp static.json render.yaml dist/
     publishDir: dist
