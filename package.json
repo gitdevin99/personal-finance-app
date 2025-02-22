@@ -4,7 +4,7 @@
   "description": "AI-powered personal finance dashboard",
   "main": "index.html",
   "scripts": {
-    "build": "mkdir -p dist && cp -r index.html login dashboard signup onboarding assets dist/ && cp static.json render.yaml dist/"
+    "build": "mkdir -p dist && cp -r index.html login dashboard signup onboarding dist/ && cp static.json render.yaml dist/"
   },
   "repository": {
     "type": "git",
