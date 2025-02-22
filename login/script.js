@@ -54,26 +54,65 @@ const form = document.getElementById('loginForm');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Basic validation
+    // Reset previous errors
+    resetErrors();
+    
+    let hasErrors = false;
+    
+    // Email validation
     if (!isValidEmail(emailInput.value)) {
-        shakeElement(emailInput);
-        return;
+        showError(emailInput, 'Please enter a valid email address');
+        hasErrors = true;
     }
     
+    // Password validation
     if (passwordInput.value.length < 6) {
-        shakeElement(passwordInput);
-        return;
+        showError(passwordInput, 'Password must be at least 6 characters');
+        hasErrors = true;
     }
     
-    // Here you would typically handle the form submission
-    console.log('Form submitted:', {
-        email: emailInput.value,
-        password: passwordInput.value
-    });
+    if (hasErrors) return;
+    
+    // Show loading state
+    const loginButton = document.getElementById('loginButton');
+    loginButton.disabled = true;
+    loginButton.classList.add('loading');
+    loginButton.textContent = '';
+    
+    try {
+        // Simulate API call - replace with actual login API
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Redirect to dashboard on success
+        window.location.href = '/dashboard';
+    } catch (error) {
+        showError(emailInput, 'Invalid email or password');
+        showError(passwordInput, '');
+    } finally {
+        loginButton.disabled = false;
+        loginButton.classList.remove('loading');
+        loginButton.textContent = 'Login';
+    }
 });
+
+function showError(input, message) {
+    input.classList.add('error');
+    const errorSpan = input.parentElement.querySelector('.error-message');
+    errorSpan.textContent = message;
+    shakeElement(input);
+}
+
+function resetErrors() {
+    const inputs = [emailInput, passwordInput];
+    inputs.forEach(input => {
+        input.classList.remove('error');
+        const errorSpan = input.parentElement.querySelector('.error-message');
+        errorSpan.textContent = '';
+    });
+}
 
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

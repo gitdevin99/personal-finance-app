@@ -5,6 +5,7 @@
     --text-light: #2d3436;
     --input-bg-light: rgba(255, 255, 255, 0.8);
     --accent-light: #6c5ce7;
+    --error-light: #ff4757;
     
     /* Dark theme variables */
     --bg-dark: linear-gradient(135deg, #0f1729 0%, #1a1b2e 100%);
@@ -12,6 +13,7 @@
     --text-dark: #ffffff;
     --input-bg-dark: rgba(30, 39, 56, 0.8);
     --accent-dark: #00ff9d;
+    --error-dark: #ff6b81;
 }
 
 * {
@@ -19,6 +21,146 @@
     padding: 0;
     box-sizing: border-box;
     transition: all 0.3s ease;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(128, 128, 128, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: transparent;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.light-mode input {
+    color: var(--text-light);
+}
+
+.dark-mode input {
+    color: var(--text-dark);
+}
+
+input:focus {
+    border-color: var(--accent-light);
+}
+
+.dark-mode input:focus {
+    border-color: var(--accent-dark);
+}
+
+input.error {
+    border-color: var(--error-light);
+}
+
+.dark-mode input.error {
+    border-color: var(--error-dark);
+}
+
+.error-message {
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: 0.85rem;
+    color: var(--error-light);
+}
+
+.dark-mode .error-message {
+    color: var(--error-dark);
+}
+
+label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    background: transparent;
+    padding: 0 4px;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.9);
+    opacity: 1;
+}
+
+.light-mode input:focus + label,
+.light-mode input:not(:placeholder-shown) + label {
+    background: var(--card-bg-light);
+    color: var(--accent-light);
+}
+
+.dark-mode input:focus + label,
+.dark-mode input:not(:placeholder-shown) + label {
+    background: var(--card-bg-dark);
+    color: var(--accent-dark);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.signup-btn {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.light-mode .signup-btn {
+    background: var(--accent-light);
+    color: white;
+}
+
+.dark-mode .signup-btn {
+    background: var(--accent-dark);
+    color: var(--text-dark);
+}
+
+.signup-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.signup-btn.loading {
+    color: transparent;
+}
+
+.signup-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s infinite linear;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 body {
