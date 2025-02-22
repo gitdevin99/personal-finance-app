@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Set Your Goals</title>
+    <link rel="stylesheet" href="/signup/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-mode">
+
+
+    <div class="container">
+        <div class="goals-card">
+            <button class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <div class="step-indicator">
+                <span>Step 1 of 3</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 33.33%;"></div>
+                </div>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <h1 class="welcome-text" style="margin-top: 2.5rem;">Set Your Financial Goals</h1>
+            <p class="dynamic-text">Choose what matters most to you</p>
+
+            <div class="goals-grid">
+                <div class="goal-item" data-goal="track-spending">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Track Spending</span>
+                </div>
+                <div class="goal-item" data-goal="cancel-subscriptions">
+                    <i class="fas fa-ban"></i>
+                    <span>Cancel Subscriptions</span>
+                </div>
+                <div class="goal-item" data-goal="grow-savings">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Grow My Savings</span>
+                </div>
+                <div class="goal-item" data-goal="lower-bills">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Lower My Bills</span>
+                </div>
+                <div class="goal-item" data-goal="improve-credit">
+                    <i class="fas fa-star"></i>
+                    <span>Improve Credit Score</span>
+                </div>
+                <div class="goal-item" data-goal="create-budget">
+                    <i class="fas fa-wallet"></i>
+                    <span>Create a Budget</span>
+                </div>
+                <div class="goal-item ai-goal" data-goal="ai-insights">
+                    <i class="fas fa-robot"></i>
+                    <span>AI-Powered Insights</span>
+                    <div class="ai-tooltip">
+                        <div class="ai-assistant">
+                            <div class="ai-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <p>I'll help analyze your spending and suggest improvements!</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="continue-btn" disabled>
+                Continue
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            icon.className = savedTheme === 'dark-mode' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            icon.className = body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', body.className);
+        });
+
+        // Handle goal selection
+        const goalItems = document.querySelectorAll('.goal-item');
+        const continueBtn = document.querySelector('.continue-btn');
+        let selectedGoals = new Set();
+
+        goalItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('selected');
+                const goalId = item.dataset.goal;
+                
+                if (item.classList.contains('selected')) {
+                    selectedGoals.add(goalId);
+                } else {
+                    selectedGoals.delete(goalId);
+                }
+                
+                // Enable/disable continue button
+                continueBtn.disabled = selectedGoals.size === 0;
+                
+                // Visual feedback
+                item.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    item.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Handle continue button
+        continueBtn.addEventListener('click', () => {
+            if (selectedGoals.size > 0) {
+                localStorage.setItem('selectedGoals', JSON.stringify(Array.from(selectedGoals)));
+                window.location.href = '/onboarding/bank-link';
+            }
+        });
+
+        // Handle back button
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                window.location.href = '/signup';
+            });
+        }
+
+        // Dynamic welcome text
+        const welcomeTexts = [
+            "Choose what matters most to you",
+            "Let's personalize your experience",
+            "What are your financial priorities?",
+            "Select your financial goals",
+            "Build your financial roadmap"
+        ];
+
+        const dynamicText = document.querySelector('.dynamic-text');
+        let currentTextIndex = 0;
+
+        function changeWelcomeText() {
+            dynamicText.style.opacity = '0';
+            setTimeout(() => {
+                currentTextIndex = (currentTextIndex + 1) % welcomeTexts.length;
+                dynamicText.textContent = welcomeTexts[currentTextIndex];
+                dynamicText.style.opacity = '1';
+            }, 500);
+        }
+
+        setInterval(changeWelcomeText, 5000);
+    </script>
+</body>
+</html>

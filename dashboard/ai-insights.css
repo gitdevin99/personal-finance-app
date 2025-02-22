@@ -1,0 +1,210 @@
+/* AI Smart Insights Styles */
+.ai-smart-insights {
+    margin-bottom: 1.25rem;
+}
+
+.dark-mode .ai-smart-insights {
+    background: var(--card-bg-dark);
+}
+
+.insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding: 0.25rem 0;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-title i {
+    font-size: 1.5rem;
+    color: var(--primary-btn-light);
+}
+
+.dark-mode .header-title i {
+    color: var(--primary-btn-dark);
+}
+
+.header-title h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--text-light);
+}
+
+.dark-mode .header-title h2 {
+    color: var(--text-dark);
+}
+
+.expand-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .expand-btn {
+    color: var(--text-dark);
+}
+
+.expand-btn:hover {
+    background: var(--hover-bg);
+}
+
+.insights-container {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-btn-light) transparent;
+}
+
+.dark-mode .insights-container {
+    scrollbar-color: var(--primary-btn-dark) transparent;
+}
+
+.insights-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.insights-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-btn-light);
+    border-radius: 3px;
+}
+
+.dark-mode .insights-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-btn-dark);
+}
+
+.insight-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    background: var(--insight-bg);
+    transition: transform 0.2s ease;
+}
+
+.dark-mode .insight-item {
+    background: var(--dark-insight-bg);
+}
+
+.insight-item:hover {
+    transform: translateY(-2px);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insight-item.positive .insight-icon {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.insight-item.warning .insight-icon {
+    background: var(--warning-light);
+    color: var(--warning);
+}
+
+.insight-item.tip .insight-icon {
+    background: var(--info-light);
+    color: var(--info);
+}
+
+.insight-item.urgent .insight-icon {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.insight-content {
+    flex: 1;
+}
+
+.insight-content h3 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-light);
+}
+
+.dark-mode .insight-content h3 {
+    color: var(--text-dark);
+}
+
+.insight-content p {
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    opacity: 0.8;
+}
+
+.insight-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--progress-bg);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--success);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn.primary {
+    background: var(--primary-btn-light);
+    color: white;
+}
+
+.dark-mode .action-btn.primary {
+    background: var(--primary-btn-dark);
+}
+
+.action-btn.secondary {
+    background: var(--button-secondary-bg);
+    color: var(--text-light);
+}
+
+.dark-mode .action-btn.secondary {
+    color: var(--text-dark);
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}

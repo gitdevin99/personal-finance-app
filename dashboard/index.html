@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Financial Dashboard - Finance App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spending-styles.css">
+    <link rel="stylesheet" href="ai-insights.css">
+    <link rel="stylesheet" href="card-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <!-- Main Content -->
+        <main class="dashboard">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-header">
+                    <div class="header-left">
+                        <h1>Welcome back, Alex!</h1>
+                        <p class="subtitle">Here's your latest financial update, powered by AI</p>
+                        <div class="ai-tip">
+                            <i class="fas fa-robot"></i>
+                            <span>You're on track to save 15% more this month!</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <a href="spending-insights.html" class="header-icon-btn" title="Spending Insights">
+                            <i class="fas fa-chart-bar"></i>
+                        </a>
+                        <button id="themeToggle" class="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Balance Overview -->
+            <section class="balance-card card-base">
+                <div class="section-header">
+                    <h2>Balance Overview</h2>
+                </div>
+                <div class="balance-header">
+                    <h2>Total Balance</h2>
+                    <div class="ai-trend positive">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <span>+2.4%</span>
+                    </div>
+                </div>
+                <div class="balance-amount">$24,562.84</div>
+            </section>
+
+            <!-- AI Smart Insights -->
+            <section class="ai-smart-insights card-base">
+                <div class="insights-header">
+                    <div class="header-title">
+                        <i class="fas fa-robot"></i>
+                        <h2>AI Smart Insights</h2>
+                    </div>
+                    <button class="expand-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="insights-container">
+                    <!-- Savings Projection -->
+                    <div class="insight-item positive">
+                        <div class="insight-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Savings Projection</h3>
+                            <p>You're on track to save 15% more this month! Keep it up!</p>
+                            <div class="insight-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                                <span>85% of goal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spending Alert -->
+                    <div class="insight-item warning">
+                        <div class="insight-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Spending Alert</h3>
+                            <p>Dining expenses are 20% higher than last month.</p>
+                            <button class="action-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Money-Saving Suggestion -->
+                    <div class="insight-item tip">
+                        <div class="insight-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Smart Suggestion</h3>
+                            <p>Setting a $100 limit on subscriptions could save you $45/month.</p>
+                            <button class="action-btn">Set Limit</button>
+                        </div>
+                    </div>
+
+                    <!-- Bill Alert -->
+                    <div class="insight-item urgent">
+                        <div class="insight-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Upcoming Payment</h3>
+                            <p>Netflix payment ($15.99) due in 2 days.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary">Pay Now</button>
+                                <button class="action-btn secondary">Remind Later</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Transactions -->
+            <section class="recent-transactions card-base">
+                <div class="section-header">
+                    <h3>Recent Transactions</h3>
+                </div>
+                <div class="transactions-list">
+                    <div class="transaction-card">
+                        <div class="merchant-logo">
+                            <img src="assets/logos/amazon-prime.svg" alt="Amazon Prime Logo">
+                        </div>
+                        <div class="transaction-details">
+                            <div class="merchant">Amazon Prime</div>
+                            <div class="category">Subscription • Feb 22</div>
+                        </div>
+                        <div class="transaction-amount">$29.99</div>
+                    </div>
+                    <div class="transaction-card">
+                        <div class="merchant-logo">
+                            <img src="assets/logos/walmart.svg" alt="Walmart Logo">
+                        </div>
+                        <div class="transaction-details">
+                            <div class="merchant">Walmart</div>
+                            <div class="category">Groceries • Feb 21</div>
+                        </div>
+                        <div class="transaction-amount">$102.50</div>
+                    </div>
+                    <div class="transaction-card">
+                        <div class="merchant-logo">
+                            <img src="assets/logos/starbucks.svg" alt="Starbucks Logo">
+                        </div>
+                        <div class="transaction-details">
+                            <div class="merchant">Starbucks</div>
+                            <div class="category">Dining • Feb 21</div>
+                        </div>
+                        <div class="transaction-amount">$15.00</div>
+                    </div>
+                </div>
+                <div class="transaction-insights">
+                    <div class="ai-insight dining-alert">
+                        <i class="fas fa-chart-line"></i>
+                        <span>You're spending 20% more on dining this month!</span>
+                    </div>
+                    <div class="ai-insight subscription-alert">
+                        <i class="fas fa-bell"></i>
+                        <span>Want to set a limit for subscriptions?</span>
+                        <button class="action-btn">Set Limit</button>
+                    </div>
+                </div>
+                <button class="view-all-btn" onclick="window.location.href='transactions.html'">
+                    View All Transactions
+                </button>
+            </section>
+
+            <!-- AI Financial Summary -->
+            <section class="ai-summary">
+                <h3>AI Financial Summary</h3>
+                <div class="summary-container">
+                    <div class="summary-card positive">
+                        <div class="summary-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="summary-content">
+                            <p>You're on track to save 15% more this month!</p>
+                            <div class="trend-indicator">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>15% increase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card warning">
+                        <div class="summary-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="summary-content">
+                            <p>Netflix ($15.99) payment due in 2 days</p>
+                            <button class="action-btn primary">Pay Now</button>
+                        </div>
+                    </div>
+
+                    <div class="summary-card danger">
+                        <div class="summary-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="summary-content">
+                            <p>Dining expenses 20% higher than last month</p>
+                            <button class="action-btn">Set Spending Limit</button>
+                        </div>
+                    </div>
+
+                    <div class="summary-card info">
+                        <div class="summary-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="summary-content">
+                            <p>Grocery expenses predicted to increase by 12% next month</p>
+                            <button class="action-btn">Adjust Budget</button>
+                        </div>
+                    </div>
+
+                    <!-- Income & Expenses Summary -->
+                    <div class="summary-card positive">
+                        <div class="summary-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="summary-content">
+                            <p>Monthly Overview</p>
+                            <div class="trend-indicator">
+                                <span>Income: $4,890 (+12%)</span>
+                                <span>•</span>
+                                <span>Expenses: $2,140 (-8%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Financial Score -->
+            <!-- AI Suggestions -->
+            <section class="ai-suggestions">
+                <h2>AI Suggestions</h2>
+                <div id="aiInsights" class="ai-insights">
+                    <div class="ai-insight warning">
+                        <i class="fas fa-robot"></i>
+                        <div class="insight-content">
+                            <span class="insight-tag">Subscription</span>
+                            <p>Set a $100 limit on subscriptions to optimize budget</p>
+                        </div>
+                    </div>
+                    <div class="ai-insight info">
+                        <i class="fas fa-robot"></i>
+                        <div class="insight-content">
+                            <span class="insight-tag">Groceries</span>
+                            <p>Shop at Walmart instead of Whole Foods to save ~$120/month</p>
+                        </div>
+                    </div>
+                    <div class="ai-insight positive">
+                        <i class="fas fa-robot"></i>
+                        <div class="insight-content">
+                            <span class="insight-tag">Transport</span>
+                            <p>Current transport spending is 10% under budget - Great job!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Upcoming Bills Section -->
+            <section class="upcoming-bills card-base">
+                <div class="section-header">
+                    <h2>Upcoming Bills</h2>
+                </div>
+                <p class="subtitle">Never miss a payment. AI-powered bill tracking.</p>
+
+                <div class="bill-alert">
+                    <div class="alert-content">
+                        <i class="fab fa-spotify"></i>
+                        <p>Your Spotify subscription ($9.99) is due tomorrow. Want to pay now?</p>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-btn primary">Pay Now</button>
+                        <button class="action-btn secondary">Snooze Reminder</button>
+                    </div>
+                </div>
+
+                <div class="bills-list">
+                    <div class="bill-item">
+                        <div class="bill-logo netflix">
+                            <i class="fab fa-netflix"></i>
+                        </div>
+                        <div class="bill-details">
+                            <h3>Netflix Subscription</h3>
+                            <p class="due-date warning">Due in 3 days</p>
+                        </div>
+                        <div class="bill-amount">
+                            <span class="amount">$15.99</span>
+                            <span class="status warning">⚠️</span>
+                        </div>
+                    </div>
+
+                    <div class="bill-item">
+                        <div class="bill-logo rent">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="bill-details">
+                            <h3>Monthly Rent</h3>
+                            <p class="due-date success">Paid</p>
+                        </div>
+                        <div class="bill-amount">
+                            <span class="amount">$1,200.00</span>
+                            <span class="status success">✅</span>
+                        </div>
+                    </div>
+
+                    <div class="bill-item">
+                        <div class="bill-logo internet">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="bill-details">
+                            <h3>Internet Service</h3>
+                            <p class="due-date danger">Overdue by 2 days</p>
+                        </div>
+                        <div class="bill-amount">
+                            <span class="amount">$59.99</span>
+                            <span class="status danger">❌</span>
+                        </div>
+                    </div>
+
+                    <div class="bill-item">
+                        <div class="bill-logo gym">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="bill-details">
+                            <h3>Gym Membership</h3>
+                            <p class="due-date warning">Due in 5 days</p>
+                        </div>
+                        <div class="bill-amount">
+                            <span class="amount">$45.00</span>
+                            <span class="status warning">⚠️</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="financial-score">
+                <h2>Your Financial Score</h2>
+                <div class="score-card">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 36 36" class="score-progress">
+                            <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--input-bg-light)" stroke-width="2.5" />
+                            <path class="score-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--primary-btn-light)" stroke-width="2.5" stroke-dasharray="75, 100" stroke-linecap="round" />
+                            <text x="18" y="20.35" class="score-text" text-anchor="middle" dominant-baseline="middle">75</text>
+                        </svg>
+                    </div>
+                    <div class="score-details">
+                        <h3>Great Progress!</h3>
+                        <p>You're in the top 20% of savers this month</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="spending-insights.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Insights</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <!-- Floating AI Assistant Button -->
+        <button class="ai-assistant-btn">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="ai-insights.js"></script>
+</body>
+</html>

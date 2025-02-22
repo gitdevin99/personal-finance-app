@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Link Your Bank</title>
+    <link rel="stylesheet" href="/signup/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-mode">
+
+
+    <div class="container">
+        <div class="bank-link-card">
+            <button class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <div class="step-indicator">
+                <span>Step 2 of 3</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 66.66%;"></div>
+                </div>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <h1 class="welcome-text" style="margin-top: 2.5rem;">Link Your Bank Account</h1>
+            <p class="dynamic-text">Connect securely with LeanTech</p>
+
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Bank-grade Security</span>
+                <div class="security-tooltip">
+                    Your data is encrypted and protected with LeanTech
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for your bank..." id="bankSearch">
+                </div>
+            </div>
+
+            <div class="banks-list">
+                <!-- Popular Banks -->
+                <div class="bank-item">
+                    <img src="https://logo.clearbit.com/chase.com" alt="Chase" class="bank-logo">
+                    <span class="bank-name">Chase</span>
+                    <button class="connect-btn">Connect</button>
+                </div>
+                <div class="bank-item">
+                    <img src="https://logo.clearbit.com/bankofamerica.com" alt="Bank of America" class="bank-logo">
+                    <span class="bank-name">Bank of America</span>
+                    <button class="connect-btn">Connect</button>
+                </div>
+                <div class="bank-item">
+                    <img src="https://logo.clearbit.com/wellsfargo.com" alt="Wells Fargo" class="bank-logo">
+                    <span class="bank-name">Wells Fargo</span>
+                    <button class="connect-btn">Connect</button>
+                </div>
+                <div class="bank-item">
+                    <img src="https://logo.clearbit.com/citibank.com" alt="Citibank" class="bank-logo">
+                    <span class="bank-name">Citibank</span>
+                    <button class="connect-btn">Connect</button>
+                </div>
+                <div class="bank-item">
+                    <img src="https://logo.clearbit.com/capitalone.com" alt="Capital One" class="bank-logo">
+                    <span class="bank-name">Capital One</span>
+                    <button class="connect-btn">Connect</button>
+                </div>
+            </div>
+
+            <button class="skip-btn" onclick="window.location.href='/onboarding/budget-setup/'">Skip for Now</button>
+            <button class="continue-btn" onclick="window.location.href='/onboarding/budget-setup/'" disabled>
+                Continue
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Connecting to Your Bank</h2>
+            <p>Please wait while we establish a secure connection...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" style="display: none;">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Success!</h2>
+            <p>Your bank is linked. We're fetching your transactions.</p>
+            <div class="progress-bar-small">
+                <div class="progress-fill-animated"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            icon.className = savedTheme === 'dark-mode' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            icon.className = body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', body.className);
+        });
+
+        // Handle bank search
+        const bankSearch = document.getElementById('bankSearch');
+        const banksList = document.querySelector('.banks-list');
+        const bankItems = document.querySelectorAll('.bank-item');
+        const continueBtn = document.querySelector('.continue-btn');
+        const skipBtn = document.querySelector('.skip-btn');
+        const backButton = document.querySelector('.back-button');
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        const successModal = document.querySelector('.success-modal');
+
+        // Back button handler - navigate to goals page
+        backButton.addEventListener('click', () => {
+            window.location.href = '/onboarding/goals';
+        });
+
+        // Search functionality
+        bankSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            bankItems.forEach(item => {
+                const bankName = item.querySelector('.bank-name').textContent.toLowerCase();
+                if (bankName.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Connect button handlers
+        const connectButtons = document.querySelectorAll('.connect-btn');
+        connectButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const bankItem = button.closest('.bank-item');
+                const bankName = bankItem.querySelector('.bank-name').textContent;
+                
+                // Show loading overlay
+                loadingOverlay.style.display = 'flex';
+                
+                // Simulate API call to LeanTech
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Hide loading overlay and show success modal
+                loadingOverlay.style.display = 'none';
+                successModal.style.display = 'flex';
+                
+                // Store connected bank in localStorage
+                localStorage.setItem('connectedBank', bankName);
+                
+                // Enable continue button
+                continueBtn.disabled = false;
+                
+                // Auto-continue after success message
+                setTimeout(() => {
+                    successModal.style.display = 'none';
+                }, 3000);
+            });
+        });
+
+        // Skip button handler
+        skipBtn.addEventListener('click', () => {
+            continueBtn.disabled = false;
+            skipBtn.textContent = 'Skipped';
+            skipBtn.style.opacity = '0.7';
+            skipBtn.disabled = true;
+        });
+
+        // Continue button handler
+        continueBtn.addEventListener('click', () => {
+            // Navigate to next step (to be implemented)
+            console.log('Proceeding to next step...');
+        });
+
+        // Dynamic welcome text
+        const welcomeTexts = [
+            "Connect securely with LeanTech",
+            "Link your accounts safely",
+            "Get a complete view of your finances",
+            "Secure bank connection",
+            "Your security is our priority"
+        ];
+
+        const dynamicText = document.querySelector('.dynamic-text');
+        let currentTextIndex = 0;
+
+        function changeWelcomeText() {
+            dynamicText.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentTextIndex = (currentTextIndex + 1) % welcomeTexts.length;
+                dynamicText.textContent = welcomeTexts[currentTextIndex];
+                dynamicText.style.opacity = '1';
+            }, 500);
+        }
+
+        setInterval(changeWelcomeText, 5000);
+    </script>
+</body>
+</html>

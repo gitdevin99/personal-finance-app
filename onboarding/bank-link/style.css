@@ -1,0 +1,531 @@
+:root {
+    /* Light Mode Colors */
+    --background-light: #F8F9FB;
+    --card-bg-light: #FFFFFF;
+    --primary-btn-light: #6D4AFF;
+    --selected-outline-light: #6D4AFF;
+    --text-light: #0D1321;
+    --input-bg-light: #E0E3EB;
+    
+    /* Dark Mode Colors */
+    --background-dark: #0D1321;
+    --card-bg-dark: #1B2735;
+    --primary-btn-dark: #00E19B;
+    --selected-outline-dark: #00E19B;
+    --text-dark: #FFFFFF;
+    --input-bg-dark: #243144;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.light-mode {
+    background-color: var(--background-light);
+    color: var(--text-light);
+}
+
+.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.header-section {
+    background: #ffffff;
+    padding: 1rem;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    margin: -2rem -2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dark-mode .header-section {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.back-button:hover {
+    opacity: 1;
+}
+
+.step-indicator {
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 2rem;
+    width: 120px;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover {
+    opacity: 1;
+}
+
+.progress-bar {
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.dark-mode .progress-bar {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-light);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.dark-mode .progress-fill {
+    background: var(--accent-dark);
+}
+
+.bank-link-card {
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.light-mode .bank-link-card {
+    background: var(--card-bg-light);
+}
+
+.dark-mode .bank-link-card {
+    background: var(--card-bg-dark);
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 12px;
+    position: relative;
+    cursor: help;
+}
+
+.security-badge i {
+    color: var(--accent-light);
+}
+
+.dark-mode .security-badge i {
+    color: var(--accent-dark);
+}
+
+.security-tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg-light);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .security-tooltip {
+    background: var(--card-bg-dark);
+}
+
+.security-badge:hover .security-tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -50px;
+}
+
+.search-container {
+    margin: 1.5rem 0;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.light-mode .search-box input {
+    background: var(--input-bg-light);
+    color: var(--text-light);
+}
+
+.dark-mode .search-box input {
+    background: var(--input-bg-dark);
+    color: var(--text-dark);
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.banks-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.bank-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.light-mode .bank-item {
+    background: var(--input-bg-light);
+}
+
+.dark-mode .bank-item {
+    background: var(--input-bg-dark);
+}
+
+.bank-item.selected {
+    border-color: var(--primary-btn-light);
+    box-shadow: 0 0 15px rgba(109, 74, 255, 0.2);
+}
+
+.dark-mode .bank-item.selected {
+    border-color: var(--primary-btn-dark);
+    box-shadow: 0 0 15px rgba(0, 225, 155, 0.2);
+}
+
+.connect-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.light-mode .connect-btn {
+    background: var(--primary-btn-light);
+    color: white;
+}
+
+.dark-mode .connect-btn {
+    background: var(--primary-btn-dark);
+    color: var(--background-dark);
+}
+
+.dark-mode .bank-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Action Buttons */
+.skip-btn, .continue-btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.skip-btn {
+    background: var(--input-bg-light);
+    color: var(--text-light);
+}
+
+.dark-mode .skip-btn {
+    background: var(--input-bg-dark);
+    color: var(--text-dark);
+}
+
+.continue-btn {
+    opacity: 0.7;
+}
+
+.light-mode .continue-btn {
+    background: var(--primary-btn-light);
+    color: white;
+}
+
+.dark-mode .continue-btn {
+    background: var(--primary-btn-dark);
+    color: var(--background-dark);
+}
+
+.continue-btn:not([disabled]) {
+    opacity: 1;
+}
+
+.continue-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.bank-item:hover {
+    transform: translateX(5px);
+}
+
+.bank-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    object-fit: contain;
+}
+
+.bank-name {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.connect-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.light-mode .connect-btn {
+    background: var(--accent-light);
+    color: white;
+}
+
+.dark-mode .connect-btn {
+    background: var(--accent-dark);
+    color: #000;
+}
+
+.skip-btn, .continue-btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.skip-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: inherit;
+}
+
+.continue-btn {
+    background: rgb(0, 245, 147);
+    color: rgb(0, 0, 0);
+}
+
+.continue-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dark-mode .continue-btn {
+    background: rgb(0, 245, 147);
+    color: rgb(0, 0, 0);
+}
+
+.dark-mode .skip-btn {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--accent-light);
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Success Modal */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.success-content {
+    background: var(--card-bg-light);
+    padding: 2rem;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 400px;
+    margin: 1rem;
+}
+
+.dark-mode .success-content {
+    background: var(--card-bg-dark);
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-small {
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.progress-fill-animated {
+    height: 100%;
+    background: var(--accent-light);
+    animation: progress 2s infinite;
+    border-radius: 2px;
+}
+
+.dark-mode .progress-fill-animated {
+    background: var(--accent-dark);
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    50% { width: 100%; }
+    100% { width: 0%; }
+}
+
+/* Custom Scrollbar */
+.banks-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.banks-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.banks-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.dark-mode .banks-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 480px) {
+    .bank-link-card {
+        padding: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .bank-item {
+        padding: 0.8rem;
+    }
+    
+    .bank-logo {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Insights - Finance App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spending-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <!-- Header Section -->
+        <section class="page-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1>Spending Insights</h1>
+                </div>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="insights-dashboard">
+            <!-- Two Column Layout -->
+            <div class="insights-grid">
+                <!-- Left Column: Spending Overview -->
+                <section class="spending-overview card">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <div class="title-group">
+                                <h2>Spending Categories</h2>
+                                <p class="subtitle">Click chart segments for details</p>
+                            </div>
+                            <div class="time-filter">
+                                <button class="filter-btn active" data-period="1W">1W</button>
+                                <button class="filter-btn" data-period="1M">1M</button>
+                                <button class="filter-btn" data-period="6M">6M</button>
+                                <button class="filter-btn" data-period="1Y">1Y</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section expandable">
+                        <div class="chart-container">
+                            <canvas id="spendingDonut"></canvas>
+                            <div id="chartCenter" class="chart-center">
+                                <span class="total-amount">$3,450</span>
+                                <span class="total-label">Total Spent</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right Column: Key Insights -->
+                <section class="key-insights card">
+                    <h2>Key Insights</h2>
+                    <div class="insights-grid-container">
+                        <div class="insight-card" data-category="dining">
+                            <div class="insight-icon" style="background: #FFA500">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Dining</h3>
+                                <p class="amount">$540</p>
+                                <div class="trend increase">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>15%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card" data-category="groceries">
+                            <div class="insight-icon" style="background: #00E19B">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Groceries</h3>
+                                <p class="amount">$820</p>
+                                <div class="trend decrease">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>8%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card" data-category="subscriptions">
+                            <div class="insight-icon" style="background: #6D4AFF">
+                                <i class="fas fa-repeat"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Subscriptions</h3>
+                                <p class="amount">$145</p>
+                                <div class="trend stable">
+                                    <i class="fas fa-minus"></i>
+                                    <span>0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card" data-category="shopping">
+                            <div class="insight-icon" style="background: #4A90E2">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Shopping</h3>
+                                <p class="amount">$950</p>
+                                <div class="trend increase">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>12%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card" data-category="utilities">
+                            <div class="insight-icon" style="background: #FFD700">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Utilities</h3>
+                                <p class="amount">$245</p>
+                                <div class="trend decrease">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>5%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-card" data-category="transport">
+                            <div class="insight-icon" style="background: #A0A0A0">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="insight-details">
+                                <h3>Transport</h3>
+                                <p class="amount">$750</p>
+                                <div class="trend increase">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>3%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Spending Trends Section -->
+            <section class="spending-trends card expandable">
+                <div class="section-header">
+                    <div class="header-content">
+                        <div class="title-group">
+                            <h2>Spending Trends</h2>
+                            <p class="subtitle">Click to view detailed analysis</p>
+                        </div>
+                        <div class="time-filter">
+                            <button class="filter-btn active" data-period="1W">1W</button>
+                            <button class="filter-btn" data-period="1M">1M</button>
+                            <button class="filter-btn" data-period="6M">6M</button>
+                            <button class="filter-btn" data-period="1Y">1Y</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="trend-chart-container">
+                    <canvas id="monthlyTrendChart"></canvas>
+                </div>
+            </section>
+
+            <!-- AI-Powered Spending Forecast -->
+            <section class="spending-forecast card">
+                <div class="forecast-header">
+                    <h2>AI-Powered Spending Forecast</h2>
+                    <p class="subtitle">Get AI-driven predictions for your upcoming expenses</p>
+                </div>
+
+                <div class="forecast-alert">
+                    <div class="alert-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="alert-content">
+                        <p>Your grocery spending is projected to increase by 12% next month. Want to adjust your budget?</p>
+                        <div class="alert-actions">
+                            <button class="action-btn primary">Adjust Budget</button>
+                            <button class="action-btn secondary">View Full Forecast</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast-metrics">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Predicted Expenses</h3>
+                            <span class="trend increase">
+                                <i class="fas fa-arrow-up"></i>5% from last month
+                            </span>
+                        </div>
+                        <span class="amount">$2,750</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h3>Predicted Savings</h3>
+                            <span class="trend positive">On track</span>
+                        </div>
+                        <span class="amount">$800</span>
+                    </div>
+                </div>
+
+                <div class="forecast-details">
+                    <div class="trend-section">
+                        <h3>3-Month Trend</h3>
+                        <div class="trend-chart-wrapper">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="categories-section">
+                        <h3>Category Breakdown</h3>
+                        <div class="category-list">
+                            <div class="category-item">
+                                <div class="category-header">
+                                    <span class="category-name">Rent</span>
+                                    <span class="category-amount">$1,200</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 40%"></div>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-header">
+                                    <span class="category-name">Subscriptions</span>
+                                    <span class="category-amount">$150</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 15%"></div>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-header">
+                                    <span class="category-name">Dining</span>
+                                    <span class="category-amount">$400</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-header">
+                                    <span class="category-name">Groceries</span>
+                                    <span class="category-amount">$350</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="transactions.html" class="nav-item">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <i class="fas fa-chart-pie"></i>
+                <span>Insights</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="spending-insights.js"></script>
+</body>
+</html>

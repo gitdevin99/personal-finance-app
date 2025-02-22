@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - Finance App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transactions-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <!-- Header Section -->
+        <section class="page-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1>Transactions</h1>
+                </div>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="transactions-dashboard">
+            <!-- Mini Insights Section -->
+            <section class="mini-insights card">
+                <div class="insights-grid">
+                    <div class="insight-card total-spent">
+                        <div class="insight-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Total Spent</h3>
+                            <p class="amount">$3,450</p>
+                            <p class="comparison">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8% vs last month</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="insight-card top-category">
+                        <div class="insight-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Top Category</h3>
+                            <p class="category">Dining</p>
+                            <p class="amount">$820</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters Section -->
+            <section class="filters-section card">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search transactions..." id="searchInput">
+                </div>
+
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Date Range</label>
+                        <div class="date-inputs">
+                            <input type="date" id="startDate">
+                            <input type="date" id="endDate">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Category</label>
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="rent">Rent & Utilities</option>
+                            <option value="dining">Dining & Groceries</option>
+                            <option value="entertainment">Entertainment & Shopping</option>
+                            <option value="subscriptions">Subscriptions & Bills</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Amount Range</label>
+                        <div class="range-slider">
+                            <input type="range" id="amountRange" min="0" max="1000" step="10">
+                            <div class="range-values">
+                                <span id="minAmount">$0</span>
+                                <span id="maxAmount">$1000+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions List -->
+            <section class="transactions-list card">
+                <div class="list-header">
+                    <h2>Recent Transactions</h2>
+                    <button class="sort-btn">
+                        <i class="fas fa-sort"></i>
+                        Sort by
+                    </button>
+                </div>
+
+                <div class="transactions-container" id="transactionsList">
+                    <!-- Transaction items will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="transactions.html" class="nav-item active">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="spending-insights.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Insights</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="transactions.js"></script>
+</body>
+</html>

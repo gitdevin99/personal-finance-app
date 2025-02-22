@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Your Monthly Budget - Finance App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <div class="budget-card">
+            <button class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <div class="step-indicator">
+                <span>Step 3 of 3</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <h2>Set Your Monthly Budget</h2>
+            <p class="subtitle dynamic-text">Plan your finances by setting a budget. You can adjust this anytime later.</p>
+
+                <!-- AI Income Detection -->
+                <div id="aiIncomeSection" class="ai-section" style="display: none;">
+                    <div class="ai-suggestion">
+                        <i class="fas fa-robot ai-icon"></i>
+                        <p>Based on your transactions, we estimate your monthly income is <strong>$<span id="detectedIncome">0</span></strong></p>
+                    </div>
+                </div>
+
+                <!-- Budget Input Section -->
+                <div class="budget-input-section">
+                    <label for="budgetSlider">Your Monthly Budget</label>
+                    <div class="slider-container">
+                        <input type="range" id="budgetSlider" min="1000" max="20000" step="100" value="5000">
+                        <div class="budget-display">
+                            <span>$</span>
+                            <input type="number" id="budgetInput" value="5000" min="1000" max="20000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Budget Breakdown -->
+                <div class="budget-breakdown">
+                    <div class="breakdown-header">
+                        <h3>Smart Budget Breakdown</h3>
+                        <label class="toggle">
+                            <input type="checkbox" id="aiToggle">
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-label">AI Suggestions</span>
+                        </label>
+                    </div>
+
+                    <div id="breakdownContent" class="breakdown-content">
+                        <div class="category">
+                            <div class="category-header">
+                                <span>Essentials</span>
+                                <span class="percentage">50%</span>
+                            </div>
+                            <div class="category-bar">
+                                <div class="category-fill" style="width: 50%; background: var(--essential-color);"></div>
+                            </div>
+                            <span class="amount">$<span class="essential-amount">2500</span></span>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-header">
+                                <span>Discretionary</span>
+                                <span class="percentage">30%</span>
+                            </div>
+                            <div class="category-bar">
+                                <div class="category-fill" style="width: 30%; background: var(--discretionary-color);"></div>
+                            </div>
+                            <span class="amount">$<span class="discretionary-amount">1500</span></span>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-header">
+                                <span>Savings</span>
+                                <span class="percentage">20%</span>
+                            </div>
+                            <div class="category-bar">
+                                <div class="category-fill" style="width: 20%; background: var(--savings-color);"></div>
+                            </div>
+                            <span class="amount">$<span class="savings-amount">1000</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Categories -->
+                <div class="custom-categories">
+                    <button class="add-category-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Custom Category
+                    </button>
+                    
+                    <div id="customCategoriesList"></div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="skip-btn">Skip for Now</button>
+                    <button class="continue-btn">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
